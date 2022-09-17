@@ -21,8 +21,12 @@ app.use(express.urlencoded({ limit: '256mb',  extended: true }));
 
 // Socket
 const http = createServer(app);
-const io = new Server(http)
-
+const io = new Server(http, {
+   cors: {
+         origin: `${process.env.BASE_URL}`,
+         credentials: true
+   }
+});
 io.on('connection', (socket: Socket) => {
    SocketServer(socket);
 })

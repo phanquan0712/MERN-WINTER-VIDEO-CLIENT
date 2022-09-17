@@ -8,7 +8,6 @@ router
   .post(auth, postCtrl.createPost)
   .get(postCtrl.getHomePost)
   .patch(auth, postCtrl.updatePost);
-
 router.patch("/post/:id/like", auth, postCtrl.likePost);
 router.patch("/post/:id/unlike", auth, postCtrl.unLikePost);
 router.get("/post_following", auth, postCtrl.getPostFollowing);
