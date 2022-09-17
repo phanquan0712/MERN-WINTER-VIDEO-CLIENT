@@ -104,6 +104,7 @@ const authCtrl = {
          const user = await User.findById(decoded.id).populate('following followers liked', '-password');
          if(!user)   return res.status(400).json({ msg: 'This account does not exist!' })
          const access_token = generateAccessToken({id: user._id});
+         const refresh_token = generateRefreshToken({ id: user._id }, res);
          res.json({access_token, user})
       } catch (err: any) {
          return res.status(500).json({ msg: err.message })
